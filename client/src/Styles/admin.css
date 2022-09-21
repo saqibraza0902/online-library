@@ -1,0 +1,178 @@
+/* Admin NavBar */
+.dash-bg {
+    background-color: rgb(67 79 86);
+}
+
+.admin-nav-name {
+    color: #FFFFFF;
+    margin: 5px 3px 0px 3px;
+    font-weight: 200;
+}
+
+/* Other Pages */
+.box {
+    height: 110px;
+    background: #00c0ef;
+    margin-left: 25px;
+}
+
+.book-icon {
+    font-size: 50px;
+    color: #00a3cb;
+}
+
+.box>span {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+
+}
+
+.user-box {
+    height: 110px;
+    background: #00a65a;
+    margin-left: 25px;
+}
+
+.user-icon {
+    font-size: 50px;
+    color: #008d4d;
+}
+
+.user-box>span {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+.book-box {
+    height: 110px;
+    background: #f39c12;
+    margin-left: 25px;
+}
+
+.book-icon-2 {
+    font-size: 50px;
+    color: #cf850f;
+}
+
+.book-box>span {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+.abc {
+    display: none;
+}
+
+/* Admin >>> Add New Book */
+
+
+.login-form h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+
+
+@media only screen and (max-width:767px) {
+
+    .book-box,
+    .box,
+    .user-box {
+        margin-left: 0;
+    }
+
+    .abc {
+        display: flex;
+    }
+
+
+}
+
+
+/* Update Password Form */
+.update-password-form,
+.book-add-form,
+.inside-signin-super-admin,
+.inside-signin-form,
+.update-details-form * {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+.update-password-form,
+.book-add-form,
+.inside-signin-super-admin,
+.inside-signin-form,
+.update-details-form {
+    position: relative;
+    top: 0%;
+    height: 300px;
+    width: 400px;
+    background-color: rgba(67, 24, 24, 0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+}
+
+.update-details-form {
+    height: 350px;
+
+}
+
+.inside-signin-form {
+    top: 0%;
+    height: 480px;
+}
+
+.inside-signin-super-admin {
+    height: 600px;
+}
+
+.book-add-form {
+    top: 0%;
+    height: 600px;
+}
+
+.update-details-form>input,
+.inside-signin-form>input,
+.book-add-form>input,
+.inside-signin-super-admin>input,
+.inside-signin-super-admin>select,
+.book-add-form>select,
+.update-password-form>input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(119, 42, 42, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+
+.update-password-bg,
+.update-details-bg,
+.inside-signin-bg,
+.inside-signin-super-admin-bg,
+.book-add-bg {
+    background-color: #fff;
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    height: 100vh;
+    margin: 0px 0px 30px 0px;
+}
+
+.book-add-bg {
+    height: 110vh;
+}
