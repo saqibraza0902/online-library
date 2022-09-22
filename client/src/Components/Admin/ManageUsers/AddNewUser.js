@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../../axiosInstance/api'
 import Navbar from '../Navbar'
 import { toast, ToastContainer } from 'react-toastify'
@@ -45,8 +45,14 @@ const AddNewUser = () => {
         }
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+    }, [])
+
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar and Navbar ends here */}
 
@@ -72,8 +78,8 @@ const AddNewUser = () => {
                             <input type='number' className='form-control shadow-none' value={regPhone} onChange={(e) => setRegPhone(e.target.value)} placeholder='Phone' />
                             <input type='password' className='form-control shadow-none' value={regPass} onChange={(e) => setRegPass(e.target.value)} placeholder='Password' />
                             <input type='password' className='form-control shadow-none' value={cRegPass} onChange={(e) => setCRegPass(e.target.value)} placeholder='Confirm Password' />
-                            <div className='d-flex mt-2 justify-content-center'>
-                                <button type='submit' className='btn btn-primary btn-login w-75'>Create Account</button>
+                            <div className='d-grid mt-2'>
+                                <button type='submit' className='btn btn-secondary'>Create Account</button>
                             </div>
                         </form>
                     </div>

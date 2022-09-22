@@ -22,7 +22,7 @@ const OTPmailer = (email, otp) => {
         if (error) {
             console.log(error.message);
         } else {
-            console.log('Email has been Sent at ' + email);
+            console.log('Email Sent at ' + email);
         }
     });
 }

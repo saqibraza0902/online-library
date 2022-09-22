@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../../axiosInstance/api'
 import Navbar from '../Navbar'
 
@@ -50,7 +50,11 @@ const Update = () => {
             toast(error.response.data.message)
         }
     }
-
+    useEffect(() => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+    }, [])
     const handleClick = () => {
         if (toggle === false) {
             setToggle(true)
@@ -60,7 +64,7 @@ const Update = () => {
     }
 
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar and Navbar ends here */}
 
@@ -84,8 +88,8 @@ const Update = () => {
                             <input type='text' className='form-control shadow-none mt-1' value={regLName} onChange={(e) => setRegLName(e.target.value)} placeholder='Lastname' />
                             <input type='email' className='form-control shadow-none mt-1' value={regEmail} onChange={(e) => setRegEmail(e.target.value)} placeholder='Email' />
                             <input type='number' className='form-control shadow-none mt-1' value={regPhone} onChange={(e) => setRegPhone(e.target.value)} placeholder='Phone' />
-                            <div className='d-flex p-1 pt-3 justify-content-center'>
-                                <button type='submit' className='btn btn-primary btn-login w-75'>Update Details</button>
+                            <div className='d-grid mt-2'>
+                                <button type='submit' className='btn btn-secondary shadow-none'>Update Details</button>
                             </div>
                         </form>
                     </div>

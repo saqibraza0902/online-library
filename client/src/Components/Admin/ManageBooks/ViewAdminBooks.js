@@ -36,6 +36,10 @@ const ViewAdminBooks = () => {
 
         }
         gettingBooks()
+
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
     const handleUpdate = async (e) => {
         e.preventDefault()
@@ -90,7 +94,7 @@ const ViewAdminBooks = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
 
 

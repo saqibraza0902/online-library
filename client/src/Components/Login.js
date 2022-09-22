@@ -35,14 +35,18 @@ const Login = () => {
             }
             const { data } = await api.post('/user/login/otp', Login)
             if (data.id === null) {
-                toast(data.message)
+                swal("Error", data.message, {
+                    timer: 1200,
+                })
             } else {
                 setUser(data.id)
                 setModal(true)
 
             }
         } catch (error) {
-            toast(error.response.data.message)
+            swal("Error", error.response.data.message, {
+                timer: 1000,
+            })
         }
     }
     const handleSignUp = async (e) => {
@@ -65,7 +69,9 @@ const Login = () => {
                 toast('Password and Confirm Password Should be Same')
             }
         } catch (error) {
-            toast(error.response.data.message)
+            swal("Error", error.response.data.message, {
+                timer: 1000,
+            })
         }
     }
 
@@ -86,10 +92,10 @@ const Login = () => {
                 localStorage.setItem('role', data.role)
                 window.location.href = `/${data.role}/dashboard`
             })
-
-            console.log(data)
         } catch (error) {
-            toast(error.response.data.message)
+            swal("Error", error.response.data.message, {
+                timer: 1000,
+            })
         }
     }
     useEffect(() => {
@@ -147,11 +153,7 @@ const Login = () => {
             </div>
             {show === true ?
                 <div className='signup-div'>
-                    <div className={addclass ? 'col-md-6 col-sm-12  welcome-div slide3' : 'col-md-6 col-sm-12  welcome-div'}>
-                        <h2>Welcome to Sign Up</h2>
-                        <p className='text-white'>Already have account</p>
-                        <span type='button' onClick={() => handleSigninButton()}>Sign In</span>
-                    </div>
+
                     <div className={addclass ? 'col-md-6 col-sm-12 sign-up slide4' : 'col-md-6 col-sm-12 sign-up'}>
                         <div className='top-signup-content'>
                             <h3>Sign Up</h3>
@@ -173,22 +175,34 @@ const Login = () => {
                             <button>Sign Up</button>
                         </form>
                     </div>
+                    <div className={addclass ? 'col-md-6 col-sm-12  welcome-div slide3' : 'col-md-6 col-sm-12  welcome-div'}>
+                        <h2>Welcome to Sign Up</h2>
+                        <p className='text-white'>Already have account</p>
+                        <span type='button' onClick={() => handleSigninButton()}>Sign In</span>
+                    </div>
 
                 </div>
                 :
                 <div className='login-div'>
                     <div className={addclass === true ? 'col-md-6 col-sm-12 order-1 sign-in slide1' : 'col-md-6 col-sm-12 order-1 sign-in'}>
                         <div className='top-content'>
-                            <h3>Sign in</h3>
+                            <h3>Sign In</h3>
                             <span><i type='button'><FaFacebookF /></i><i type='button'><FaTwitter /></i></span>
                         </div>
                         <form onSubmit={(e) => handleSubmit(e)} className='signin-form'>
                             <label>Email</label>
-                            <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                             <label>Password</label>
-                            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button>Login</button>
                         </form>
+                        <div className='form-footer'>
+                            <div>
+                                <input type='checkbox' />
+                                <label className='ms-2'>Remember Me</label>
+                            </div>
+                            <span>Forget Password</span>
+                        </div>
                     </div>
                     <div className={addclass === true ? 'col-md-6 col-sm-12 order-2 wel-div slide2' : 'col-md-6 col-sm-12 order-2 wel-div'}>
                         <h2>Welcome to login</h2>

@@ -16,7 +16,6 @@ const DashboardSA = () => {
     const filteredBorrow = AllBorrows?.filter(({ status, returned }) => status === 'Approved' && returned === false)
     const filteredUser = AllUsers?.filter(({ status }) => status === 1)
     const token = localStorage.getItem('token')
-    console.log(AllUsers)
     const dispatch = useDispatch()
     const handleClick = () => {
         if (toggle === false) {
@@ -28,7 +27,7 @@ const DashboardSA = () => {
     const title = AllBooks.map(({ title }) => title)
     const copies = AllBooks.map(({ copies }) => copies)
 
-    console.log(title)
+
     useEffect(() => {
         const gettingBooks = async () => {
             const { data } = await api.get('/book/all/books', {
@@ -46,7 +45,6 @@ const DashboardSA = () => {
                 }
             })
             dispatch(users(data))
-            console.log(data)
         }
         gettingUsers()
         const gettingBorrows = async () => {
@@ -59,6 +57,9 @@ const DashboardSA = () => {
         }
         gettingBorrows()
 
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
     const data = {
         labels: title
@@ -75,7 +76,7 @@ const DashboardSA = () => {
         ]
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 

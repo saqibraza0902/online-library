@@ -22,8 +22,8 @@ const About = () => {
                         <img className='w-100 rounded' style={{ height: '300px' }} src={banner} alt='' />
                     </div>
                     <div className='d-block d-sm-flex mt-5 mb-5 ' >
-                        <div className='rounded col-12 p-3 text-white' style={{ background: '#808080' }}>
-                            <div className='col-md-12  rounded pt-2 ps-2 pe-2 border d-md-flex justify-content-between' style={{ background: '#d04a4a' }}>
+                        <div className='rounded col-12 p-3 text-white' style={{ background: '#434F56' }}>
+                            <div className='col-md-12  rounded pt-2 ps-2 pe-2 border d-md-flex justify-content-between' style={{ background: '#375d74' }}>
                                 <span>Head's Up!!  Welcome to E.B. Magalona Library</span>
                                 <p ><i className="bi bi-calendar2-date"></i><span className='me-2 ms-1'>{day}</span><span> {today}</span></p>
                             </div>

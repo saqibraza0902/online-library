@@ -19,6 +19,9 @@ const ViewAllUsers = () => {
             dispatch(users(data))
         }
         getUsers()
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
 
     const handleClick = () => {
@@ -29,7 +32,7 @@ const ViewAllUsers = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle}  handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* sidebar Ends */}
         <div className={toggle === false ? "my-container active-cont" : "my-container"}>

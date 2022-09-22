@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../../axiosInstance/api'
 import Navbar from '../Navbar'
 import { toast, ToastContainer } from 'react-toastify'
@@ -14,7 +14,7 @@ const AddNewBook = () => {
     const [status, setStatus] = useState('')
     const [year, setYear] = useState('')
     const [toggle, setToggle] = useState(false)
-const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -40,9 +40,13 @@ const token = localStorage.getItem('token')
             setToggle(false)
         }
     }
-
+    useEffect(() => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+    }, [])
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar and Navbar ends here */}
 
@@ -74,8 +78,8 @@ const token = localStorage.getItem('token')
                                 <option value='Old'>Old</option>
                                 <option value='New'>New</option>
                             </select>
-                            <div className='d-flex p-1 pt-3 justify-content-center'>
-                                <button type='submit' className='btn btn-primary btn-login w-75'>Add Book</button>
+                            <div className='d-grid mt-2'>
+                                <button type='submit' className='btn btn-secondary shadow-none'>Add Book</button>
                             </div>
                         </form>
                     </div>

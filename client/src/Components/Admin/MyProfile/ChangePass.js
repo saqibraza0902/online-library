@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar'
 import { toast, ToastContainer } from 'react-toastify'
 import swal from 'sweetalert'
@@ -46,7 +46,11 @@ const ChangePass = () => {
             console.log(error)
         }
     }
-
+    useEffect(() => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+    }, [])
     const handleClick = () => {
         if (toggle === false) {
             setToggle(true)
@@ -55,7 +59,7 @@ const ChangePass = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* sidebar Ends */}
         <div className={toggle === false ? "my-container active-cont" : "my-container"}>
@@ -79,7 +83,7 @@ const ChangePass = () => {
                             <input type='password' className='form-control shadow-none' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} placeholder='Old Password' />
                             <input type='password' className='form-control shadow-none' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='Password' />
                             <input type='password' className='form-control shadow-none' value={reperateNewPassword} onChange={(e) => setRepeatNewPassword(e.target.value)} placeholder='Confirm New Password' />
-                            <div className='p-2 d-grid'>
+                            <div className='mt-2 d-grid'>
                                 <button type='submit' className='btn btn-secondary shadow-none'>Reset Password</button>
                             </div>
                         </form>

@@ -26,7 +26,13 @@ const DashboardA = () => {
 
         }
         gettingBooks()
+        
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+
     }, [dispatch, token])
+
     const handleClick = () => {
         if (toggle === false) {
             setToggle(true)
@@ -35,7 +41,7 @@ const DashboardA = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
 
 

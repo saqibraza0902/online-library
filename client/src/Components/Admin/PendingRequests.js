@@ -22,6 +22,9 @@ const PendingRequests = () => {
             // console.log(data)
         }
         gettingBorrow()
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
 
     const handleApprove = async (mybook) => {
@@ -62,7 +65,7 @@ const PendingRequests = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 

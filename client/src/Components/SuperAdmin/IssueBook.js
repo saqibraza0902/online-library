@@ -22,6 +22,9 @@ const IssueBook = () => {
             // console.log(data)
         }
         gettingBorrow()
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
     const handleDisapprove = async (id) => {
 
@@ -63,7 +66,7 @@ const IssueBook = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 
@@ -106,13 +109,13 @@ const IssueBook = () => {
                                         <td>
                                             {book.status === 'Pending' ?
                                                 <div className='d-flex justify-content-between'>
-                                                    <i type='button' class="bi bi-check" onClick={() => handleApprove(book)}></i>
-                                                    <i type='button' class="bi bi-x" onClick={() => handleDisapprove(book._id)}></i>
+                                                    <i type='button' className="bi bi-check" onClick={() => handleApprove(book)}></i>
+                                                    <i type='button' className="bi bi-x" onClick={() => handleDisapprove(book._id)}></i>
                                                 </div>
                                                 :
                                                 <div className='d-flex justify-content-between'>
-                                                    <i class="bi bi-check me-3" onClick={() => toast('Book Already Approved')}></i>
-                                                    <i class="bi bi-x" onClick={() => toast('Book Already Approved')}></i>
+                                                    <i className="bi bi-check me-3" onClick={() => toast('Book Already Approved')}></i>
+                                                    <i className="bi bi-x" onClick={() => toast('Book Already Approved')}></i>
                                                 </div>
                                             }
 

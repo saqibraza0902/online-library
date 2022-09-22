@@ -11,7 +11,7 @@ const loginCtrl = {
             // const token = jwt.sign({ user }, process.env.SECRET)
             // const role = user?.role
             if (user) {
-                const otpCode = Math.floor(Math.random() * 10000 + 1);
+                const otpCode = Math.floor(1000 + Math.random() * 9000);
                 let otpData = new OTP({ user: user._id, code: otpCode, })
                 const otp = JSON.stringify(otpCode)
                 await otpData.save();

@@ -23,6 +23,10 @@ const ApprovedRequests = () => {
         }
 
         gettingBorrow()
+
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
 
     const handleReturn = async (book) => {
@@ -59,7 +63,7 @@ const ApprovedRequests = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 

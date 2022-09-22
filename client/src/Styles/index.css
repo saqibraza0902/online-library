@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,100&family=Roboto&display=swap');
+
 body {
     background: #ecf0f5;
 
@@ -7,9 +9,9 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,100&family=Roboto&display=swap');
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -26,10 +28,6 @@ input::-webkit-inner-spin-button {
     background-color: rgb(67 79 86);
     transition: 0.5s;
 }
-
-/* * {
-    transition: 0.5s;
-} */
 
 .my-container {
     transition: 0.4s;
@@ -52,7 +50,7 @@ input::-webkit-inner-spin-button {
 
 
 
-/* my css */
+/* MY STLING */
 .nav-link:hover {
     cursor: pointer;
 }
@@ -74,19 +72,20 @@ input::-webkit-inner-spin-button {
     margin-top: 10px;
 }
 
+.drop-li>ul {
+    margin-left: -20px;
+}
+
+.drop-li>ul>li {
+    list-style-type: disc;
+
+}
+
+
 .side-navbar {
     font-family: 'Montserrat', sans-serif
 }
 
-.profile-submenu>i {
-    font-size: 8px;
-    color: #B8C7CE !important
-}
-
-.profile-submenu>span {
-    font-size: 12px;
-    color: #B8C7CE !important
-}
 
 .li-text {
     margin-left: 10px;
@@ -240,7 +239,14 @@ input::-webkit-inner-spin-button {
 }
 
 .top-content>h3 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 30px;
+    font-size: 28px;
+    font-weight: lighter;
+}
+
+.top-content>span {
+    padding-top: 30px;
 }
 
 .top-content>span>i {
@@ -267,25 +273,25 @@ input::-webkit-inner-spin-button {
 }
 
 .signin-form {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .signin-form>label {
-    padding: 10px 20px;
+    padding: 10px 0px;
     text-transform: uppercase;
     font-size: 12px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
 
 .signin-form>input {
-    text-align: center;
+    padding-left: 10px;
     height: 50px;
     width: 100%;
     display: block;
-    background-color: #e5e2e2;
+    background-color: #d1dfe7;
     border: none;
-    border-radius: 20px;
+    border-radius: 2px;
 }
 
 
@@ -296,10 +302,10 @@ input::-webkit-inner-spin-button {
 
 .signin-form>button {
     margin-top: 25px;
-    height: 40px;
-    background-image: linear-gradient(to right, #f7595c, #f35584);
+    height: 50px;
+    background-image: linear-gradient(to right, #434F56, #375d74);
     border: none;
-    border-radius: 20px;
+    border-radius: 2px;
     color: white;
     transition: 0.3s;
     width: 100%;
@@ -307,16 +313,22 @@ input::-webkit-inner-spin-button {
 
 .signin-form>button:hover {
     width: 100%;
-    height: 40px;
-    background: #f35588;
+    height: 50px;
+    background: #48a0a6;
     border: none;
-    border-radius: 20px;
+    border-radius: 2px;
     color: white;
     transition: 0.3s;
 }
 
+.form-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .wel-div {
-    background-image: linear-gradient(to bottom right, #f75959, #f35587);
+    background-image: linear-gradient(to bottom right, #434F56, #375d74);
     display: flex;
     order: 2;
     flex-direction: column;
@@ -328,7 +340,6 @@ input::-webkit-inner-spin-button {
     font-size: 32px;
     font-weight: 900;
     color: white;
-    font-family: 'Lato', sans-serif;
 }
 
 .wel-div>span {
@@ -447,7 +458,7 @@ input::-webkit-inner-spin-button {
 }
 
 .welcome-div {
-    background-image: linear-gradient(to bottom right, #f75959, #f35587);
+    background-image: linear-gradient(to bottom right, #434F56, #375d74);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -455,11 +466,10 @@ input::-webkit-inner-spin-button {
 }
 
 .welcome-div>h2 {
-    margin-top: 30%;
+    margin-top: 35%;
     font-size: 32px;
     font-weight: 900;
     color: white;
-    font-family: 'Lato', sans-serif;
 }
 
 .welcome-div>span {
@@ -492,7 +502,8 @@ input::-webkit-inner-spin-button {
 
 
 .top-signup-content>h3 {
-    font-family: 'Lato', sans-serif;
+    font-size: 28px;
+    font-weight: lighter;
 }
 
 .top-signup-content>span>i {
@@ -532,15 +543,18 @@ input::-webkit-inner-spin-button {
 }
 
 .signup-form>input {
+    padding-left: 10px;
     margin: 3px;
-    text-align: center;
-    height: 45px;
+    height: 50px;
     width: 100%;
-    background-color: #e5e2e2;
+    background-color: #d1dfe7;
     border: none;
-    border-radius: 20px;
+    border-radius: 2px;
 }
 
+.signin-form>input::placeholder {
+    margin-left: 5px;
+}
 
 .signup-form>input:focus {
     border: none;
@@ -549,11 +563,11 @@ input::-webkit-inner-spin-button {
 }
 
 .signup-form>button {
-    margin-top: 25px;
-    height: 40px;
-    background-image: linear-gradient(to right, #f7595c, #f35584);
+    margin: 5px 3px 0px 3px;
+    height: 50px;
+    background-image: linear-gradient(to right, #434F56, #375d74);
     border: none;
-    border-radius: 20px;
+    border-radius: 2px;
     color: white;
     transition: 0.3s;
     width: 100%;
@@ -561,10 +575,10 @@ input::-webkit-inner-spin-button {
 
 .signup-form>button:hover {
     width: 100%;
-    height: 40px;
-    background: #f35588;
+    height: 50px;
+    background: #48a0a6;
     border: none;
-    border-radius: 20px;
+    border-radius: 2px;
     color: white;
     transition: 0.3s;
 }

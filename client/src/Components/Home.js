@@ -21,7 +21,7 @@ const Home = () => {
                     <div className='col-12 mt-5'>
                         <img className='w-100 rounded' style={{ height: '300px' }} src={banner} alt='' />
                     </div>
-                    <div className='col-md-12  mt-3 rounded d-md-flex pt-2 justify-content-between' style={{ background: '#cff4fc' }}>
+                    <div className='col-md-12 text-white mt-3 rounded d-md-flex pt-2 justify-content-between' style={{ background: '#375d74' }}>
                         <span>Head's Up!!  Welcome to E.B. Magalona Library</span>
                         <p ><i className="bi bi-calendar2-date"></i><span className='me-2 ms-1'>{day}</span><span> {today}</span></p>
                     </div>
@@ -50,7 +50,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className='d-block d-sm-flex mt-5 mb-5 ' >
-                        <div className='rounded p-5 text-white' style={{ background: '#008000' }}>
+                        <div className='rounded p-5 text-white' style={{ background: '#434F56' }}>
                             <strong>Vision</strong>
                             <hr></hr>
                             <div className='ms-5'>

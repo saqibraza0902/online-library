@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#a79161' }}>
+            <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#434F56' }}>
                 <div className="container-fluid">
                     <span className="navbar-brand" >
-                        <img className='rounded-circle' style={{ width: '60px' }} src={logo} alt='' />
+                        <img className='rounded-circle' style={{ width: '30px',height:'30px' }} src={logo} alt='' />
                     </span>
                     <button className="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
