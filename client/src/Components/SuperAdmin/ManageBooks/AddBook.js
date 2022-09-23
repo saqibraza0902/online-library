@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../../../axiosInstance/api'
 import Navbar from '../Navbar'
 import { toast, ToastContainer } from 'react-toastify'
@@ -42,8 +42,13 @@ const AddBook = () => {
         }
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+    }, [])
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar and Navbar ends here */}
 
@@ -64,21 +69,21 @@ const AddBook = () => {
                     <div className="d-flex addbook-bg justify-content-center align-items-center col-md-12 book-add-bg">
 
                         <form onSubmit={(e) => handleSubmit(e)} className='book-add-form'>
-                            <input type='text' className='form-control shadow-none' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Book Title' />
-                            <input type='text' className='form-control shadow-none' value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Book Category' />
-                            <input type='text' className='form-control shadow-none' value={auther} onChange={(e) => setAuther(e.target.value)} placeholder='Book Auther' />
-                            <input type='number' className='form-control shadow-none' value={copies} onChange={(e) => setCopies(e.target.value)} placeholder='Book Copies' />
-                            <input type='text' className='form-control shadow-none' value={publication} onChange={(e) => setPublication(e.target.value)} placeholder='Publication' />
-                            <input type='number' className='form-control shadow-none' value={isbn} onChange={(e) => setISBN(e.target.value)} placeholder='ISBN' />
-                            <input type='number' className='form-control shadow-none' value={year} onChange={(e) => setYear(e.target.value)} placeholder='CopyRight Year' />
-                            <select defaultValue={'Default'} className='form-control shadow-none' onChange={(e) => setStatus(e.target.value)}>
+                            <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Book Title' />
+                            <input type='text' value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Book Category' />
+                            <input type='text' value={auther} onChange={(e) => setAuther(e.target.value)} placeholder='Book Auther' />
+                            <input type='number' value={copies} onChange={(e) => setCopies(e.target.value)} placeholder='Book Copies' />
+                            <input type='text' value={publication} onChange={(e) => setPublication(e.target.value)} placeholder='Publication' />
+                            <input type='number' value={isbn} onChange={(e) => setISBN(e.target.value)} placeholder='ISBN' />
+                            <input type='number' value={year} onChange={(e) => setYear(e.target.value)} placeholder='CopyRight Year' />
+                            <select defaultValue={'Default'} onChange={(e) => setStatus(e.target.value)}>
                                 <option value='Default'></option>
                                 <option value='Old'>Old</option>
                                 <option value='New'>New</option>
                             </select>
 
-                            <div className='d-flex p-1 pt-3 justify-content-center'>
-                                <button type='submit' className='btn btn-primary btn-login w-75'>Add Book</button>
+                            <div className='d-grid'>
+                                <button type='submit' >Add Book</button>
                             </div>
                         </form>
                     </div>

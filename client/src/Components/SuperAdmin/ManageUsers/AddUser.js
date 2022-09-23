@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../../axiosInstance/api'
 import Navbar from '../Navbar'
 import { toast, ToastContainer } from 'react-toastify'
@@ -49,9 +49,14 @@ const AddUser = () => {
             setToggle(false)
         }
     }
+    useEffect(() => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+    },[])
 
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar and Navbar ends here */}
 
@@ -71,19 +76,19 @@ const AddUser = () => {
                     </div>
                     <div className="d-flex justify-content-center align-items-center col-md-12 inside-signin-super-admin-bg">
                         <form onSubmit={(e) => handleSubmit(e)} className='inside-signin-super-admin'>
-                            <input type='text' className='form-control shadow-none' value={regFName} onChange={(e) => setRegFName(e.target.value)} placeholder='Firstname' />
-                            <input type='text' className='form-control shadow-none mt-2' value={regLName} onChange={(e) => setRegLName(e.target.value)} placeholder='Lastname' />
-                            <input type='email' className='form-control shadow-none mt-2' value={regEmail} onChange={(e) => setRegEmail(e.target.value)} placeholder='Email' />
-                            <input type='number' className='form-control shadow-none mt-2' value={regPhone} onChange={(e) => setRegPhone(e.target.value)} placeholder='Phone' />
-                            <input type='password' className='form-control shadow-none mt-2' value={regPass} onChange={(e) => setRegPass(e.target.value)} placeholder='Password' />
-                            <input type='password' className='form-control shadow-none mt-2' value={cRegPass} onChange={(e) => setCRegPass(e.target.value)} placeholder='Confirm Password' />
-                            <select defaultValue={'Default'} className='form-select shadow-none mt-2' onChange={(e) => setRegRole(e.target.value)}>
+                            <input type='text'  value={regFName} onChange={(e) => setRegFName(e.target.value)} placeholder='Firstname' />
+                            <input type='text'  value={regLName} onChange={(e) => setRegLName(e.target.value)} placeholder='Lastname' />
+                            <input type='email'  value={regEmail} onChange={(e) => setRegEmail(e.target.value)} placeholder='Email' />
+                            <input type='number'  value={regPhone} onChange={(e) => setRegPhone(e.target.value)} placeholder='Phone' />
+                            <input type='password'  value={regPass} onChange={(e) => setRegPass(e.target.value)} placeholder='Password' />
+                            <input type='password' value={cRegPass} onChange={(e) => setCRegPass(e.target.value)} placeholder='Confirm Password' />
+                            <select defaultValue={'Default'} onChange={(e) => setRegRole(e.target.value)}>
                                 <option value='Default'></option>
                                 <option value='0'>User</option>
                                 <option value='1'>Admin</option>
                             </select>
-                            <div className='d-flex p-1 pt-3 justify-content-center'>
-                                <button type='submit' className='btn btn-primary btn-login w-75'>Create Account</button>
+                            <div className='d-grid'>
+                                <button type='submit'>Create Account</button>
                             </div>
                         </form>
                     </div>

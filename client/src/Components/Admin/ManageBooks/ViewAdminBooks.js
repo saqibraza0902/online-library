@@ -4,8 +4,8 @@ import api from '../../../axiosInstance/api';
 import Sidebar from '../Sidebar';
 import { useDispatch, useSelector } from 'react-redux'
 import { books } from '../../../Redux/Actions/Actions';
-import { ToastContainer, toast } from 'react-toastify';
 import { Modal } from 'react-bootstrap'
+import swal from 'sweetalert';
 
 const ViewAdminBooks = () => {
     const [show, setShow] = useState(false);
@@ -31,7 +31,7 @@ const ViewAdminBooks = () => {
                 })
                 dispatch(books(data))
             } catch (error) {
-                console.log(error)
+                swal('Error', error, { timer: 2000 })
             }
 
         }
@@ -58,10 +58,10 @@ const ViewAdminBooks = () => {
                 }
             })
             dispatch(books(data.book))
-            toast(data.message)
+            swal('Success', data.message, { timer: 2000 })
             setShow(false)
         } catch (error) {
-            console.log(error)
+            swal('Error', error, { timer: 2000 })
         }
     }
     const updating = (book) => {
@@ -77,13 +77,13 @@ const ViewAdminBooks = () => {
     const deleteRequest = async (id) => {
         try {
             const { data } = await api.patch(`/book/delete/request/${id}`)
-            toast(data.message)
+            swal('Danger', data.message, { timer: 2000 })
             dispatch(books(data.book))
         } catch (error) {
             if (error.response.status === 400) {
-                toast(error.response.data.message)
+                swal('Error', error.response.data.message, { timer: 2000 })
             }
-            console.log(error)
+            swal('Error', error, { timer: 2000 })
         }
     }
     const handleClick = () => {
@@ -177,7 +177,6 @@ const ViewAdminBooks = () => {
                 </form>
             </Modal.Body>
         </Modal>
-        <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </>
 
     )

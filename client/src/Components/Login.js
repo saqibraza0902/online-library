@@ -78,15 +78,13 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         const code = code1 + code2 + code3 + code4
-        console.log(code)
         try {
             const { data } = await api.post('/user/login/verify', { user, code })
             setModal(false)
             setCode1(''); setCode2(''); setCode3(''); setCode4('')
             setUser()
-            console.log(data)
             swal("Success", data.message, {
-                timer: 1000,
+                timer: 2000,
             }).then(() => {
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('role', data.role)
@@ -94,7 +92,7 @@ const Login = () => {
             })
         } catch (error) {
             swal("Error", error.response.data.message, {
-                timer: 1000,
+                timer: 2000,
             })
         }
     }
@@ -105,7 +103,7 @@ const Login = () => {
         if (token !== null && role) {
 
             swal("Failed", 'Already Login', {
-                timer: 1000,
+                timer: 2000,
             }).then(() => {
                 window.location.href = `/${role}/dashboard`
             })
@@ -140,7 +138,6 @@ const Login = () => {
             setCode3(element.value)
         } else if (element.id === 'forth') {
             setCode4(element.value)
-            console.log(element.nextSibling)
         }
         if (element.nextSibling) {
             element.nextSibling.focus();
@@ -219,17 +216,17 @@ const Login = () => {
                         <div className="container ">
                             <div className="row">
                                 <div className="col-lg-12">
-                                    <div class="container height-100 d-flex justify-content-center align-items-center">
-                                        <div class="position-relative">
-                                            <div class="card p-2 text-center">
-                                                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                                                    <input value={code1} onChange={(e) => handleChange(e.target)} class="m-3 text-center shadow-none form-control rounded" type="text" id="first" maxlength="1" />
-                                                    <input value={code2} onChange={(e) => handleChange(e.target)} class="m-3 text-center shadow-none form-control rounded" type="text" id="second" maxlength="1" />
-                                                    <input value={code3} onChange={(e) => handleChange(e.target)} class="m-3 text-center shadow-none form-control rounded" type="text" id="third" maxlength="1" />
-                                                    <input value={code4} onChange={(e) => handleChange(e.target)} class="m-3 text-center shadow-none form-control rounded" type="text" id="forth" maxlength="1" />
+                                    <div className="container height-100 d-flex justify-content-center align-items-center">
+                                        <div className="position-relative">
+                                            <div className="card p-2 text-center">
+                                                <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2">
+                                                    <input value={code1} onChange={(e) => handleChange(e.target)} className="m-2 text-center shadow-none form-control rounded" type="text" id="first" maxLength={1} />
+                                                    <input value={code2} onChange={(e) => handleChange(e.target)} className="m-2 text-center shadow-none form-control rounded" type="text" id="second" maxLength={1} />
+                                                    <input value={code3} onChange={(e) => handleChange(e.target)} className="m-2 text-center shadow-none form-control rounded" type="text" id="third" maxLength={1} />
+                                                    <input value={code4} onChange={(e) => handleChange(e.target)} className="m-2 text-center shadow-none form-control rounded" type="text" id="forth" maxLength={1} />
                                                 </div>
-                                                <div class="mt-4">
-                                                    <button class="btn btn-danger px-4 validate">Validate</button>
+                                                <div className="mt-4">
+                                                    <button className="btn btn-secondary px-4 validate">Validate</button>
                                                 </div>
                                             </div>
                                         </div>

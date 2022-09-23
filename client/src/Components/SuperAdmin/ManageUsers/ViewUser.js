@@ -19,9 +19,11 @@ const ViewUser = () => {
                 }
             })
             dispatch(users(data))
-            console.log(data)
         }
         getUsers()
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
     const update = async (id) => {
         try {
@@ -59,7 +61,7 @@ const ViewUser = () => {
     }
 
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 

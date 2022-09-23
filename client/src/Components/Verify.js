@@ -5,9 +5,7 @@ import swal from 'sweetalert';
 
 const Verify = () => {
     const { token } = useParams();
-    console.log(token)
     const tokens = token
-    console.log(tokens)
     const verifyUser = async () => {
         const { data } = await api.post('/user/post', { tokens })
         swal("Success", data.message, {

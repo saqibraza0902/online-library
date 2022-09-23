@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
-import { ToastContainer, toast } from 'react-toastify'
 import { borrows } from '../../Redux/Actions/Actions'
 import api from '../../axiosInstance/api'
+import swal from 'sweetalert'
 
 const ApprovedRequests = () => {
     const [toggle, setToggle] = useState(false)
@@ -21,9 +21,7 @@ const ApprovedRequests = () => {
             })
             dispatch(borrows(data))
         }
-
         gettingBorrow()
-
         setTimeout(() => {
             setToggle(true)
         }, 500);
@@ -39,7 +37,7 @@ const ApprovedRequests = () => {
                 }
             })
             dispatch(borrows(data.borrow))
-            toast(data.message)
+            swal('Success', data.message, { timer: 2000 })
             try {
                 const { data } = await api.delete(`/borrow/delete/borrow/${id}`, {
                     headers: {
@@ -48,10 +46,10 @@ const ApprovedRequests = () => {
                 })
                 console.log(data)
             } catch (error) {
-                console.log(error)
+                swal("Error", error, { timer: 2000 })
             }
         } catch (error) {
-            console.log(error)
+            swal("Error", error, { timer: 2000 })
         }
     }
 
@@ -113,7 +111,7 @@ const ApprovedRequests = () => {
                                                 <i type='button' onClick={() => handleReturn(book)} className='bi bi-check2'></i>
                                             </td> :
                                             <td>
-                                                <i type='button' onClick={() => toast('Already Returned')} className='bi bi-check2-all'></i>
+                                                <i type='button' onClick={() => swal('Error', 'Already Returned', { timer: 2000 })} className='bi bi-check2-all'></i>
                                             </td>
                                         }
                                     </tr>
@@ -124,7 +122,6 @@ const ApprovedRequests = () => {
                 </div>
             </div>
         </div>
-        <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </>
     )
 }

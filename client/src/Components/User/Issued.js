@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { UserIssued } from '../../Redux/Actions/Actions';
 import Sidebar from './Sidebar';
 import JWTdecode from 'jwt-decode';
+import swal from 'sweetalert';
 
 const Issued = () => {
     const dispatch = useDispatch()
@@ -25,7 +26,9 @@ const Issued = () => {
                 })
                 dispatch(UserIssued(data))
             } catch (error) {
-                console.log(error)
+                swal("Success", `${error} You need to Login Again`, {
+                    timer: 3000,
+                })
             }
         }
         gettingBooks()

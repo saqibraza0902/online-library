@@ -44,6 +44,7 @@ const App = () => {
           <Route path='/about' element={<About />} />
           <Route path='/login' element={<Login />} />
           <Route path='/verify/:token' element={<Verify />} />
+
           <Route element={<Private allowedRoles={ROLES.User} />}>
             <Route path={`/${ROLES.User}/dashboard`} element={<Dashboard />} />
             <Route path={`/${ROLES.User}/password`} element={<UpdatePassword />} />
@@ -51,6 +52,7 @@ const App = () => {
             <Route path={`/${ROLES.User}/archive`} element={<Archive />} />
             <Route path={`/${ROLES.User}/borrow`} element={<Borrow />} />
           </Route>
+          
           <Route element={<Private allowedRoles={ROLES.Admin} />}>
             <Route path={`/${ROLES.Admin}/dashboard`} element={<DashboardA />} />
             <Route path={`/${ROLES.Admin}/password`} element={<ChangePass />} />

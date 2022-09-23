@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 import { ToastContainer, toast } from 'react-toastify'
 import { borrows } from '../../Redux/Actions/Actions'
 import api from '../../axiosInstance/api'
+import swal from 'sweetalert'
 
 const ViewIssued = (props) => {
     const [toggle, setToggle] = useState(false)
@@ -22,6 +23,9 @@ const ViewIssued = (props) => {
             dispatch(borrows(data))
         }
         gettingBorrow()
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
 
     const handleReturn = async (book) => {
@@ -32,7 +36,9 @@ const ViewIssued = (props) => {
             dispatch(borrows(data.borrow))
             toast(data.message)
         } catch (error) {
-            console.log(error)
+            swal("Success", `${error} You need to Login Again`, {
+                timer: 3000,
+            })
         }
     }
 
@@ -44,7 +50,7 @@ const ViewIssued = (props) => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 

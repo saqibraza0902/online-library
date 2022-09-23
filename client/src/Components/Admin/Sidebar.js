@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
-import { BsCircleFill } from 'react-icons/bs'
 const Sidebar = (props) => {
     const user = localStorage.getItem('token')
     const decode = jwtDecode(user)

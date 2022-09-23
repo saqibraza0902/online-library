@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar'
-import { toast, ToastContainer } from 'react-toastify'
 import swal from 'sweetalert'
 import Sidebar from '../Sidebar'
 import api from '../../../axiosInstance/api'
@@ -20,7 +19,7 @@ const ChangePass = () => {
         e.preventDefault();
         try {
             if (newPassword !== reperateNewPassword) {
-                toast('Password and Confirm Password Should be same')
+                swal('Error', 'Password and Confirm Password Should be same', { timer: 2000 })
             } else {
                 const { data } = await api.patch(`/user/updatepwd/${id}`, { oldPassword, newPassword }, {
                     headers: {
@@ -31,7 +30,7 @@ const ChangePass = () => {
                 setOldPassword('')
                 setRepeatNewPassword('')
                 swal("Success", `You need to Login Again ${data.message}`, {
-                    timer: 3000,
+                    timer: 2000,
                 }).then(() => {
                     localStorage.removeItem('token')
                     localStorage.removeItem('role')
@@ -41,9 +40,9 @@ const ChangePass = () => {
 
         } catch (error) {
             if (error.response.status === 400) {
-                toast(error.response.data.message)
+                swal('Error', error.response.data.message, { timer: 2000 })
             }
-            console.log(error)
+            swal('Error', error, { timer: 2000 })
         }
     }
     useEffect(() => {
@@ -80,17 +79,16 @@ const ChangePass = () => {
 
                     <div className='d-flex justify-content-center align-items-center col-md-12 update-password-bg'  >
                         <form onSubmit={(e) => handleSubmit(e)} className='update-password-form'>
-                            <input type='password' className='form-control shadow-none' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} placeholder='Old Password' />
-                            <input type='password' className='form-control shadow-none' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='Password' />
-                            <input type='password' className='form-control shadow-none' value={reperateNewPassword} onChange={(e) => setRepeatNewPassword(e.target.value)} placeholder='Confirm New Password' />
-                            <div className='mt-2 d-grid'>
-                                <button type='submit' className='btn btn-secondary shadow-none'>Reset Password</button>
+                            <input type='password' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} placeholder='Old Password' />
+                            <input type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='Password' />
+                            <input type='password' value={reperateNewPassword} onChange={(e) => setRepeatNewPassword(e.target.value)} placeholder='Confirm New Password' />
+                            <div className='d-grid'>
+                                <button type='submit'>Reset Password</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         </div>
     </>
     )

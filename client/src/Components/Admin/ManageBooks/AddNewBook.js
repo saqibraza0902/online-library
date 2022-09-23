@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../../axiosInstance/api'
 import Navbar from '../Navbar'
-import { toast, ToastContainer } from 'react-toastify'
 import Sidebar from '../Sidebar'
+import swal from 'sweetalert'
 
 const AddNewBook = () => {
     const [title, setTitle] = useState('');
@@ -28,9 +28,9 @@ const AddNewBook = () => {
             })
             setTitle(''); setCategory(''); setAuther(''); setCopies(''); setPublication('')
             setISBN(''); setStatus(''); setYear('');
-            toast(data.message)
+            swal('Success', data.message, { timer: 2000 })
         } catch (error) {
-            toast(error.response.data.message)
+            swal('Error', error.response.data.message, { timer: 2000 })
         }
     }
     const handleClick = () => {
@@ -66,29 +66,26 @@ const AddNewBook = () => {
                     </div>
                     <div className="d-flex justify-content-center align-items-center col-md-12 book-add-bg">
                         <form onSubmit={(e) => handleSubmit(e)} className='book-add-form'>
-                            <input type='text' className='form-control shadow-none' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Book Title' />
-                            <input type='text' className='form-control shadow-none' value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Book Category' />
-                            <input type='text' className='form-control shadow-none' value={auther} onChange={(e) => setAuther(e.target.value)} placeholder='Book Auther' />
-                            <input type='number' className='form-control shadow-none' value={copies} onChange={(e) => setCopies(e.target.value)} placeholder='Book Copies' />
-                            <input type='text' className='form-control shadow-none' value={publication} onChange={(e) => setPublication(e.target.value)} placeholder='Publication' />
-                            <input type='number' className='form-control shadow-none' value={isbn} onChange={(e) => setISBN(e.target.value)} placeholder='ISBN' />
-                            <input type='number' className='form-control shadow-none' value={year} onChange={(e) => setYear(e.target.value)} placeholder='CopyRight Year' />
-                            <select defaultValue={'Default'} className='form-control shadow-none' onChange={(e) => setStatus(e.target.value)}>
+                            <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Book Title' />
+                            <input type='text' value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Book Category' />
+                            <input type='text' value={auther} onChange={(e) => setAuther(e.target.value)} placeholder='Book Auther' />
+                            <input type='number' value={copies} onChange={(e) => setCopies(e.target.value)} placeholder='Book Copies' />
+                            <input type='text' value={publication} onChange={(e) => setPublication(e.target.value)} placeholder='Publication' />
+                            <input type='number' value={isbn} onChange={(e) => setISBN(e.target.value)} placeholder='ISBN' />
+                            <input type='number' value={year} onChange={(e) => setYear(e.target.value)} placeholder='CopyRight Year' />
+                            <select defaultValue={'Default'} onChange={(e) => setStatus(e.target.value)}>
                                 <option value='Default' disabled>Book status</option>
                                 <option value='Old'>Old</option>
                                 <option value='New'>New</option>
                             </select>
-                            <div className='d-grid mt-2'>
-                                <button type='submit' className='btn btn-secondary shadow-none'>Add Book</button>
+                            <div className='d-grid'>
+                                <button type='submit' >Add Book</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </>
     )
 }

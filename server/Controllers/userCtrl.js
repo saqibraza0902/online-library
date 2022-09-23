@@ -22,7 +22,7 @@ const userCtrl = {
                 return res.status(400).json({ message: 'User Already exist on this email' })
             }
             const token = jwt.sign(req.body, process.env.SECRET)
-            const url = `https://online-library-client.herokuapp.com/verify/${token}`
+            const url = `http://localhost:3000/verify/${token}`
             mailer(email, url)
             return res.status(201).json({ message: "Please Check email to Verify Your account", token })
         } catch (error) {
@@ -32,10 +32,7 @@ const userCtrl = {
     postVerifiedUser: async (req, res) => {
         try {
             const { tokens } = req.body
-            // const token = JSON.stringify(tokens)
-            //    console.log(tokens)
             const verify = jwt.verify(tokens, process.env.SECRET)
-            // console.log(verify)
             const user = new User(verify)
             user.save()
             res.status(200).json({ message: 'Your request has been send to the admin' })
@@ -105,13 +102,12 @@ const userCtrl = {
     },
     updatePassword: async (req, res) => {
         try {
-            
-            
+
+
             const { oldPassword, newPassword } = req.body
             const id = req.params.id
-            
+
             const finds = await User.findOne({ _id: id, password: oldPassword })
-            // console.log(finds)
             if (!finds) {
                 return res.status(400).json({ message: 'Your old Password is incorrect' })
             } else if (oldPassword === newPassword) {
@@ -141,13 +137,6 @@ const userCtrl = {
             return res.status(200).json({ message: 'User deleted succesfull', user })
         } catch (error) {
             return res.status(500).json({ error: error.message })
-        }
-    },
-    myallusers: async (req, res) => {
-        try {
-            res.send('my all user is running')
-        } catch (error) {
-            console.log(error)
         }
     }
 }

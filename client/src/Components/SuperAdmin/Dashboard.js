@@ -95,26 +95,28 @@ const DashboardSA = () => {
                             <li className='text-muted'>Dashboard</li>
                         </div>
                     </div>
-                    <div className='box col-lg-3 col-xs-6 rounded'>
-                        <div className='d-flex justify-content-between'>
-                            <h3 className='mt-2 text-white fs-1'>{filteredBorrow?.length}</h3>
-                            <i class="bi bi-book book-icon"></i>
+                    <div className='top-boxes'>
+                        <div className='box col-lg-3  col-xs-6 rounded'>
+                            <div className='d-flex ms-2 justify-content-between'>
+                                <h3 className='mt-2 text-white fs-1'>{filteredBorrow?.length}</h3>
+                                <i className="bi bi-book book-icon"></i>
+                            </div>
+                            <span className='ms-2'>Issued Books</span>
                         </div>
-                        <span>Issued Books</span>
-                    </div>
-                    <div className='user-box col-lg-3 col-xs-6 rounded'>
-                        <div className='d-flex justify-content-between'>
-                            <h3 className='mt-2 text-white fs-1'>{filteredUser?.length}</h3>
-                            <i class="bi bi-people user-icon"></i>
+                        <div className='user-box col-lg-3 col-xs-6 rounded'>
+                            <div className='d-flex ms-2 justify-content-between'>
+                                <h3 className='mt-2 text-white fs-1'>{filteredUser?.length}</h3>
+                                <i className="bi bi-people user-icon"></i>
+                            </div>
+                            <span className='ms-2'>Active Users</span>
                         </div>
-                        <span>Active Users</span>
-                    </div>
-                    <div className='book-box col-lg-3 col-xs-6 rounded'>
-                        <div className='d-flex justify-content-between'>
-                            <h3 className='mt-2 text-white fs-1'>{AllBooks?.length}</h3>
-                            <i class="bi bi-book book-icon-2"></i>
+                        <div className='book-box col-lg-3 col-xs-6 rounded'>
+                            <div className='d-flex ms-2 justify-content-between'>
+                                <h3 className='mt-2 text-white fs-1'>{AllBooks?.length}</h3>
+                                <i className="bi bi-book book-icon-2"></i>
+                            </div>
+                            <span className='ms-2'>Manage Books</span>
                         </div>
-                        <span>Manage Books</span>
                     </div>
                     <div>
                         <MDBContainer>

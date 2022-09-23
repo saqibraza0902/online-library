@@ -30,6 +30,9 @@ const ViewBooks = () => {
             dispatch(books(data))
         }
         getBooks()
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
 
     const deleteBook = async (id) => {
@@ -87,7 +90,7 @@ const ViewBooks = () => {
     }
 
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle}  handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 

@@ -8,8 +8,6 @@ const loginCtrl = {
         try {
             const { email, password } = req.body
             const user = await User.findOne({ email, password, status: 1 })
-            // const token = jwt.sign({ user }, process.env.SECRET)
-            // const role = user?.role
             if (user) {
                 const otpCode = Math.floor(1000 + Math.random() * 9000);
                 let otpData = new OTP({ user: user._id, code: otpCode, })
@@ -37,7 +35,6 @@ const loginCtrl = {
             const newUser = userDetail?.user
             const token = jwt.sign({ user:newUser }, process.env.SECRET)
             const role = userDetail?.user?.role
-            console.log(userDetail.user.role)
             await OTP.findOneAndDelete({ code: code })
             return res.status(200).json({ message:'Successfully Login' , token, role})
         } catch (error) {

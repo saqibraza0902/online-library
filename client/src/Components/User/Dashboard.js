@@ -4,6 +4,7 @@ import api from '../../axiosInstance/api'
 import Sidebar from './Sidebar';
 import { useDispatch, useSelector } from 'react-redux'
 import { books } from '../../Redux/Actions/Actions';
+import swal from 'sweetalert';
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -21,7 +22,9 @@ const Dashboard = () => {
                 })
                 dispatch(books(data.data))
             } catch (error) {
-                console.log(error)
+                swal("Success", `${error} You need to Login Again`, {
+                    timer: 3000,
+                })
             }
         }
         gettingBooks()

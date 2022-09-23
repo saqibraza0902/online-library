@@ -71,16 +71,12 @@ const bookCtrl = {
             const id = req.params.id
             const borrowRequest = await Borrows.find({ book: id }).populate('user')
             const find = borrowRequest.filter(({ returned }) => returned !== true)
-            // console.log(find)
             if (borrowRequest === 0 || find.length === 0) {
-
                 const updateBook = await Book.findByIdAndUpdate(id, { del: true })
                 const book = await Book.find()
                 return res.status(200).json({ message: 'Your request has been send to the admin', book })
             }
-
             return res.status(400).json({ message: 'You cant delete request borrow or borrowed book' })
-
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }

@@ -3,7 +3,7 @@ import api from '../../axiosInstance/api'
 import Navbar from './Navbar'
 import JWTdecode from 'jwt-decode'
 import Sidebar from './Sidebar'
-import { ToastContainer, toast } from 'react-toastify'
+import swal from 'sweetalert'
 
 const Borrow = () => {
     const [books, setBooks] = useState([])
@@ -36,19 +36,17 @@ const Borrow = () => {
     }, [token])
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         try {
             const { data } = await api.post('/borrow/post', { book, user, message }, {
                 headers: {
                     'Authorization': token
                 }
             })
-
             setBook()
             setMessage('')
-            toast(data.message)
+            swal('Success', data.message, { timer: 2000 })
         } catch (error) {
-            toast(error.response.data.message)
+            swal('Error', error.response.data.message, { timer: 2000 })
         }
         e.target.reset()
     }
@@ -138,16 +136,16 @@ const Borrow = () => {
                             <div >
                                 <select className="form-select bg-none  shadow-none" onChange={(e) => setBookValue(e.target.value)}>
                                     <option value='all'>All Books</option>
-                                    {uniqueObjects.map(({ category }) => (
-                                        <option key={category.id} value={category}>{category}</option>
+                                    {uniqueObjects.map((c) => (
+                                        <option key={c._id} value={c.category}>{c.category}</option>
                                     ))}
                                 </select>
                             </div>
                             <div className=' justify-content-center w-auto' >
                                 <select className="form-select bg-none shadow-none" onChange={(e) => setBookStatus(e.target.value)}>
                                     <option value='all'>All Authers</option>
-                                    {uniqueStatus.map(({ auther }) => (
-                                        <option key={auther.id} value={auther}>{auther}</option>
+                                    {uniqueStatus.map((a) => (
+                                        <option key={a._id} value={a.auther}>{a.auther}</option>
                                     ))}
                                 </select>
                             </div>
@@ -164,17 +162,6 @@ const Borrow = () => {
 
                     </div>
                 </div>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={2000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
             </div>
         </>
 

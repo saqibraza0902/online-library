@@ -27,8 +27,7 @@ const borrowCtrl = {
                 return res.status(400).json({ message: 'Please fill all fields' })
             }
             const todayDate = new Date();
-            const borrowDate = moment(todayDate, 'DD-MM-YYYY').format('DD-MM-YYYY')
-            // console.log(returned)    
+            const borrowDate = moment(todayDate, 'DD-MM-YYYY').format('DD-MM-YYYY')   
             const newBorrow = new Borrows({
                 book, user, message, borrowDate, issueDate, dueDate, status, returned, returnDate
             })
@@ -47,7 +46,6 @@ const borrowCtrl = {
             const issueDate = moment(todayDate, 'DD-MM-YYYY').format('DD-MM-YYYY')
             var dueDate = moment(todayDate, 'DD-MM-YYYY').add(7, "days").format('DD-MM-YYYY')
             const id = req.params.id
-            console.log(id, book)
             const approveBorrow = await Borrows.findByIdAndUpdate({ _id: id }, { dueDate, issueDate, status: 'Approved' })
             const removeCopy = await Book.findByIdAndUpdate({ _id: book }, { $inc: { copies: -1 } })
             if (!approveBorrow && !removeCopy) {
@@ -105,12 +103,6 @@ const borrowCtrl = {
                 const result = await Borrows.deleteMany({ returned: true })
                 console.log("Deleted " + result.deletedCount + " documents");
             }, 604800000);
-
-            // const id = req.params.id
-            // const result = await Borrows.findById(id)
-
-            // console.log(result)
-
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }

@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 import { borrows } from '../../Redux/Actions/Actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify'
+import swal from 'sweetalert'
 
 const IssueBook = () => {
     const [toggle, setToggle] = useState(false)
@@ -19,7 +20,6 @@ const IssueBook = () => {
                 }
             })
             dispatch(borrows(data))
-            // console.log(data)
         }
         gettingBorrow()
         setTimeout(() => {
@@ -37,7 +37,9 @@ const IssueBook = () => {
             toast(data.message)
             dispatch(borrows(data.borrows))
         } catch (error) {
-            console.log(error)
+            swal("Success", `${error} You need to Login Again`, {
+                timer: 3000,
+            })
         }
     }
 
@@ -52,9 +54,10 @@ const IssueBook = () => {
             })
             dispatch(borrows(data.borrow))
             toast(data.message)
-            console.log(id)
         } catch (error) {
-            console.log(error)
+            swal("Success", `${error} You need to Login Again`, {
+                timer: 3000,
+            })
         }
     }
 

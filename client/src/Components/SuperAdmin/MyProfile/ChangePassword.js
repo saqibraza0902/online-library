@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar';
 import api from '../../../axiosInstance/api';
 import { ToastContainer, toast } from 'react-toastify';
@@ -43,7 +43,11 @@ const ChangePassword = () => {
         }
     }
 
-
+    useEffect(() => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
+    }, [])
 
     const handleClick = () => {
         if (toggle === false) {
@@ -54,7 +58,7 @@ const ChangePassword = () => {
     }
 
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         <div className={toggle === false ? "my-container active-cont" : "my-container"}>
             <div className='container'>
@@ -74,11 +78,11 @@ const ChangePassword = () => {
 
                     <div className='d-flex justify-content-center align-items-center col-md-12 update-password-bg'  >
                         <form onSubmit={(e) => handleSubmit(e)} className='update-password-form'>
-                            <input type='password' className='form-control shadow-none' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} placeholder='Old Password' />
-                            <input type='password' className='form-control shadow-none mt-2' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='Password' />
-                            <input type='password' className='form-control shadow-none mt-2' value={reperateNewPassword} onChange={(e) => setRepeatNewPassword(e.target.value)} placeholder='Confirm New Password' />
-                            <div className='p-2 d-grid'>
-                                <button type='submit' className='btn btn-secondary shadow-none'>Reset Password</button>
+                            <input type='password' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} placeholder='Old Password' />
+                            <input type='password'  value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='Password' />
+                            <input type='password'  value={reperateNewPassword} onChange={(e) => setRepeatNewPassword(e.target.value)} placeholder='Confirm New Password' />
+                            <div className='d-grid'>
+                                <button type='submit' >Reset Password</button>
                             </div>
                         </form>
                     </div>

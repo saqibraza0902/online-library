@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { books } from '../../../Redux/Actions/Actions'
 import api from '../../../axiosInstance/api'
 import { ToastContainer, toast } from 'react-toastify'
+import swal from 'sweetalert'
+
 const DeleteRequests = () => {
     const [show, setShow] = useState(false)
     const [toggle, setToggle] = useState(false)
@@ -23,6 +25,9 @@ const DeleteRequests = () => {
             dispatch(books(data))
         }
         getBooks()
+        setTimeout(() => {
+            setToggle(true)
+        }, 500);
     }, [dispatch, token])
     const deleteBook = async (id) => {
         try {
@@ -48,7 +53,9 @@ const DeleteRequests = () => {
             toast(data.message)
             setShow(false)
         } catch (error) {
-            console.log(error)
+            swal("Success", `${error} You need to Login Again`, {
+                timer: 3000,
+            })
         }
     }
 
@@ -60,7 +67,7 @@ const DeleteRequests = () => {
         }
     }
     return (<>
-        <Navbar handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 

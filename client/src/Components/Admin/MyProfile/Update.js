@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../../axiosInstance/api'
 import Navbar from '../Navbar'
-
-import { toast, ToastContainer } from 'react-toastify'
-
 import swal from 'sweetalert'
 import Sidebar from '../Sidebar'
 import jwtDecode from 'jwt-decode'
@@ -16,14 +13,12 @@ const Update = () => {
     const [regLName, setRegLName] = useState(user?.lastname)
     const [regEmail, setRegEmail] = useState(user?.email)
     const [regPhone, setRegPhone] = useState(user?.phone);
-
     const [toggle, setToggle] = useState(false)
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
             const apidata = {
                 firstname: regFName,
                 lastname: regLName,
@@ -31,7 +26,6 @@ const Update = () => {
                 email: regEmail,
                 phone: regPhone,
             }
-            console.log(user?.email)
             const id = user._id
             const { data } = await api.patch(`/user/update/${id}`, apidata, {
                 headers: {
@@ -40,14 +34,14 @@ const Update = () => {
             })
             setRegFName(''); setRegLName(''); setRegEmail(''); setRegPhone('')
             swal("Success", `You need to Login Again ${data.message}`, {
-                timer: 3000,
+                timer: 2000,
             }).then(() => {
                 localStorage.removeItem('token')
                 localStorage.removeItem('role')
                 window.location.href = '/login'
             })
         } catch (error) {
-            toast(error.response.data.message)
+            swal('Error', error.response.data.message, { timer: 2000 })
         }
     }
     useEffect(() => {
@@ -84,21 +78,18 @@ const Update = () => {
                     </div>
                     <div className="d-flex justify-content-center align-items-center col-md-12 update-details-bg">
                         <form onSubmit={(e) => handleSubmit(e)} className='update-details-form'>
-                            <input type='text' className='form-control shadow-none' value={regFName} onChange={(e) => setRegFName(e.target.value)} placeholder='Firstname' />
-                            <input type='text' className='form-control shadow-none mt-1' value={regLName} onChange={(e) => setRegLName(e.target.value)} placeholder='Lastname' />
-                            <input type='email' className='form-control shadow-none mt-1' value={regEmail} onChange={(e) => setRegEmail(e.target.value)} placeholder='Email' />
-                            <input type='number' className='form-control shadow-none mt-1' value={regPhone} onChange={(e) => setRegPhone(e.target.value)} placeholder='Phone' />
-                            <div className='d-grid mt-2'>
-                                <button type='submit' className='btn btn-secondary shadow-none'>Update Details</button>
+                            <input type='text' value={regFName} onChange={(e) => setRegFName(e.target.value)} placeholder='Firstname' />
+                            <input type='text' value={regLName} onChange={(e) => setRegLName(e.target.value)} placeholder='Lastname' />
+                            <input type='email' value={regEmail} onChange={(e) => setRegEmail(e.target.value)} placeholder='Email' />
+                            <input type='number' value={regPhone} onChange={(e) => setRegPhone(e.target.value)} placeholder='Phone' />
+                            <div className='d-grid'>
+                                <button type='submit'>Update Details</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-
-
     </>
     )
 }

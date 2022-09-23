@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import { borrows } from '../../Redux/Actions/Actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast, ToastContainer } from 'react-toastify'
+import swal from 'sweetalert'
 
 const PendingRequests = () => {
     const [toggle, setToggle] = useState(false)
@@ -19,7 +19,6 @@ const PendingRequests = () => {
                 }
             })
             dispatch(borrows(data))
-            // console.log(data)
         }
         gettingBorrow()
         setTimeout(() => {
@@ -37,10 +36,9 @@ const PendingRequests = () => {
                 }
             })
             dispatch(borrows(data.borrow))
-            toast(data.message)
-            console.log(data)
+            swal('Success', data.message, { timer: 2000 })
         } catch (error) {
-            console.log(error)
+            swal("Error", error, { timer: 2000 })
         }
     }
     const handleDisapprove = async (id) => {
@@ -51,10 +49,10 @@ const PendingRequests = () => {
                     'Authorization': token
                 }
             })
-            toast(data.message)
+            swal('Danger', data.message, { timer: 2000 })
             dispatch(borrows(data.borrows))
         } catch (error) {
-            console.log(error)
+            swal("Error", error, { timer: 2000 })
         }
     }
     const handleClick = () => {
@@ -104,18 +102,18 @@ const PendingRequests = () => {
                                         <td>{book?.book?.title}</td>
                                         <td>{book?.user?.email}</td>
                                         <td>{book?.book?.isbn}</td>
-                                        <td>{ book?.borrowDate}</td>
+                                        <td>{book?.borrowDate}</td>
                                         <td>{book?.status}</td>
                                         <td>
                                             {book.status === 'Pending' ?
                                                 <div className='d-flex justify-content-between'>
-                                                    <i type='button' class="bi bi-check" onClick={() => handleApprove(book)}></i>
-                                                    <i type='button' class="bi bi-x" onClick={() => handleDisapprove(book._id)}></i>
+                                                    <i type='button' className="bi bi-check" onClick={() => handleApprove(book)}></i>
+                                                    <i type='button' className="bi bi-x" onClick={() => handleDisapprove(book._id)}></i>
                                                 </div>
                                                 :
                                                 <div className='d-flex justify-content-between'>
-                                                    <i type='button' class="bi bi-check" onClick={() => toast('Book Already Approved')}></i>
-                                                    <i type='button' class="bi bi-x" onClick={() => toast('Book Already Approved')}></i>
+                                                    <i type='button' className="bi bi-check" onClick={() => swal('Error', 'Book Already Approved', { timer: 2000 })}></i>
+                                                    <i type='button' className="bi bi-x" onClick={() => swal('Error', 'Book Already Approved', { timer: 2000 })}></i>
                                                 </div>
                                             }
 
@@ -128,7 +126,6 @@ const PendingRequests = () => {
                 </div>
             </div>
         </div>
-        <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </>
     )
 }
