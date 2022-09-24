@@ -2,6 +2,7 @@ const User = require('../Modals/user');
 const jwt = require('jsonwebtoken')
 const OTPmailer = require('../Services/OTPMail')
 const OTP = require('../Modals/OTP')
+const mail = require('../Services/NewMail')
 
 const loginCtrl = {
     sendLoginOTP: async (req, res) => {
@@ -13,7 +14,8 @@ const loginCtrl = {
                 let otpData = new OTP({ user: user._id, code: otpCode, })
                 const otp = JSON.stringify(otpCode)
                 await otpData.save();
-                OTPmailer(email, otp)
+                // OTPmailer(email, otp)
+                mail(email, otp)
                 return res.status(200).json({ message: 'Ok', id: user._id })
             } else {
                 return res.status(400).json({ message: 'Invalid Email or Password', id: null })

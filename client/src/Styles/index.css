@@ -298,6 +298,7 @@ input::-webkit-inner-spin-button {
 .signin-form>input:focus {
     border: none;
     outline: none;
+    background-color: #d1dfe7;
 }
 
 .signin-form>button {
