@@ -1,14 +1,14 @@
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.API_KEY)
-const OTPMailer = (email, otp) => {
-    const msg = {
-        to: email,
-        from: {
-          name: 'E.B. Magalona Library',
-            email: process.env.USER
-        },
-        subject: 'OTP for Sign In',
-        html: `<html>
+const SignUp = (email, url) => {
+  const msg = {
+    to: email,
+    from: {
+      name: 'E.B. Magalona Library',
+      email: process.env.USER
+    },
+    subject: 'Email verification',
+    html: `<html>
         <head>
         <style type="text/css">    
         /* CLIENT-SPECIFIC STYLES */
@@ -46,9 +46,6 @@ const OTPMailer = (email, otp) => {
 </style>
 </head>
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
-<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-    Reset your password
-</div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
@@ -58,7 +55,7 @@ const OTPMailer = (email, otp) => {
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
                 <tr>
                     <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                      <h1 style="font-size: 28px; font-weight: 400; margin: 0; letter-spacing: 0px;">Your OTP For Sign In</h1>
+                      <h1 style="font-size: 28px; font-weight: 400; margin: 0; letter-spacing: 0px;">Please verify your email</h1>
                     </td>
                 </tr>
             </table>
@@ -77,7 +74,7 @@ const OTPMailer = (email, otp) => {
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 200; line-height: 25px;" >
-                  <p style="margin: 0;">We are excited to have you get started. First, you need to confirm your account. Your OTP for SignIn is:</p>
+                  <p style="margin: 0;">We are excited to have you get started. First, you need to verify your account. Click on the button to verify your account:</p>
                 </td>
               </tr>
               <!-- BULLETPROOF BUTTON -->
@@ -89,7 +86,7 @@ const OTPMailer = (email, otp) => {
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
                               <td align="center" style="border-radius: 3px;" >
-                              <h1>${otp}</h1>
+                              <a style="text-decoration:none; color:black;font-size: 20px" href='${url}'>Click here to verify</a
                               </td>
                           </tr>
                         </table>
@@ -101,7 +98,7 @@ const OTPMailer = (email, otp) => {
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px; color: #666666; font-family: Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 200; line-height: 25px;" >
-                  <p style="margin: 0;">If that doesn't work, resend your OTP from browser. If you have any questions, just reply to this email. We are always happy to help out.</p>
+                  <p style="margin: 0;">If that doesn't work, resubmit your details from browser. If you have any questions, just reply to this email. We are always happy to help out.</p>
                 </td>
               </tr>
               <tr>
@@ -120,7 +117,7 @@ const OTPMailer = (email, otp) => {
     
 </body>
 </html>`
-    }
+  }
   sgMail.send(msg).then(res => console.log(`Email send at ${email}`)).catch((error) => console.log(error))
 }
-module.exports = OTPMailer
+module.exports = SignUp

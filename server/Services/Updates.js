@@ -1,13 +1,13 @@
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.API_KEY)
-const OTPMailer = (email, otp) => {
+const Updates = (email, text) => {
     const msg = {
         to: email,
         from: {
-          name: 'E.B. Magalona Library',
+            name: 'E.B. Magalona Library',
             email: process.env.USER
         },
-        subject: 'OTP for Sign In',
+        subject: 'E.B. Magalona Library Update',
         html: `<html>
         <head>
         <style type="text/css">    
@@ -46,9 +46,6 @@ const OTPMailer = (email, otp) => {
 </style>
 </head>
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
-<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-    Reset your password
-</div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
@@ -58,7 +55,7 @@ const OTPMailer = (email, otp) => {
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
                 <tr>
                     <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                      <h1 style="font-size: 28px; font-weight: 400; margin: 0; letter-spacing: 0px;">Your OTP For Sign In</h1>
+                      <h1 style="font-size: 28px; font-weight: 400; margin: 0; letter-spacing: 0px;">E.B. Magalona Library Update</h1>
                     </td>
                 </tr>
             </table>
@@ -77,31 +74,15 @@ const OTPMailer = (email, otp) => {
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 200; line-height: 25px;" >
-                  <p style="margin: 0;">We are excited to have you get started. First, you need to confirm your account. Your OTP for SignIn is:</p>
+                  <p style="margin: 0;">${text}</p>
                 </td>
               </tr>
               <!-- BULLETPROOF BUTTON -->
-              <tr>
-                <td bgcolor="#ffffff" align="left">
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
-                        <table border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                              <td align="center" style="border-radius: 3px;" >
-                              <h1>${otp}</h1>
-                              </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
+              
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px; color: #666666; font-family: Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 200; line-height: 25px;" >
-                  <p style="margin: 0;">If that doesn't work, resend your OTP from browser. If you have any questions, just reply to this email. We are always happy to help out.</p>
+                  <p style="margin: 0;">If you have any questions, just reply to this email. We are always happy to help out.</p>
                 </td>
               </tr>
               <tr>
@@ -121,6 +102,6 @@ const OTPMailer = (email, otp) => {
 </body>
 </html>`
     }
-  sgMail.send(msg).then(res => console.log(`Email send at ${email}`)).catch((error) => console.log(error))
+    sgMail.send(msg).then(res => console.log(`Email send at ${email}`)).catch((error) => console.log(error))
 }
-module.exports = OTPMailer
+module.exports = Updates

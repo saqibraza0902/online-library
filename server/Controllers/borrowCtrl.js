@@ -1,7 +1,9 @@
 const Borrows = require('../Modals/borrow')
 const Book = require('../Modals/book')
 const moment = require('moment')
-const BorrowMail = require('../Services/BorrowMail')
+const Updates = require('../Services/Updates')
+
+
 const borrowCtrl = {
     getBorrow: async (req, res, user) => {
         try {
@@ -34,7 +36,7 @@ const borrowCtrl = {
 
             await newBorrow.save()
 
-            return res.status(200).json({ message: 'Borrowed Successfully' })
+            return res.status(200).json({ message: 'Your borrow request has been send' })
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }
@@ -56,7 +58,7 @@ const borrowCtrl = {
             const email = borrows?.user?.email
             const name = borrows?.user?.firstname
             const text = `Dear ${name} admin has been approve your request of book ${bok}`
-            BorrowMail(email, text)
+            Updates(email, text)
             const borrow = await Borrows.find().populate('user').populate('book')
             res.status(200).json({ message: 'Book has been Approved', borrow })
         } catch (error) {
@@ -72,7 +74,7 @@ const borrowCtrl = {
             const email = borrow?.user?.email
             const name = borrow?.user?.firstname
             const text = `Dear ${name} admin has been disapprove your request of book ${book}`
-            BorrowMail(email, text)
+            Updates(email, text)
             const del = await Borrows.findByIdAndDelete({ _id: id })
             if (del) {
                 const borrows = await Borrows.find().populate('user').populate('book')

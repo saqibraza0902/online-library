@@ -153,12 +153,15 @@ const ViewAdminBooks = () => {
         </div>
         <Modal show={show}>
             <Modal.Header>
-                <Modal.Title>Edit User</Modal.Title>
+
+                <span>Edit User</span>
+                <span>Admin</span>
+
             </Modal.Header>
 
             <Modal.Body>
                 <form onSubmit={(e) => handleUpdate(e)}>
-                    <div className='d-grid justify-content-center'>
+                    <div className=' book-update-form'>
                         <input type='text' className='form-control shadow-none' value={title} onChange={(e) => setTitle(e.target.value)} />
                         <input type='text' className='form-control shadow-none mt-2' value={auther} onChange={(e) => setAuther(e.target.value)} />
                         <input type='text' className='form-control shadow-none mt-2' value={category} onChange={(e) => setCategory(e.target.value)} />

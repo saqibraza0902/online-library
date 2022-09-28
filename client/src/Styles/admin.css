@@ -97,6 +97,7 @@
 /* Update Password Form */
 .update-password-form,
 .book-add-form,
+.book-update-form,
 .inside-signin-super-admin,
 .inside-signin-form,
 .update-details-form * {
@@ -123,9 +124,19 @@
     padding: 50px 35px;
 }
 
+.book-update-form {
+    position: relative;
+    top: 0%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px #d1dfe7;
+    padding: 50px 35px;
+}
+
 .update-details-form {
     height: 370px;
-
 }
 
 .inside-signin-form {
@@ -145,6 +156,8 @@
 .update-details-form>input,
 .inside-signin-form>input,
 .book-add-form>input,
+.book-update-form>input,
+.book-update-form>select,
 .inside-signin-super-admin>input,
 .inside-signin-super-admin>select,
 .book-add-form>select,
@@ -165,6 +178,8 @@
 .inside-signin-super-admin>input:focus,
 .inside-signin-super-admin>select:focus,
 .book-add-form>select:focus,
+.book-update-form>input:focus,
+.book-update-form>select:focus,
 .update-password-form>input:focus {
     border: none;
     outline: none;

@@ -90,7 +90,7 @@ const ViewBooks = () => {
     }
 
     return (<>
-        <Navbar toggle={toggle}  handleClick={() => handleClick()} />
+        <Navbar toggle={toggle} handleClick={() => handleClick()} />
         <Sidebar toggle={toggle} />
         {/* Sidebar ends here */}
 
@@ -148,20 +148,22 @@ const ViewBooks = () => {
             </div>
         </div>
 
-        <Modal show={show}>
+        <Modal show={show} aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header>
-                <Modal.Title>Edit User</Modal.Title>
+
+                <span>Edit User</span>
+                <span>Super Admin</span>
+
             </Modal.Header>
 
             <Modal.Body>
                 <form onSubmit={(e) => handleUpdate(e)}>
-                    <div className='d-grid justify-content-center'>
-                        <input type='text' className='form-control' value={title} onChange={(e) => setTitle(e.target.value)} />
-                        <input type='text' className='form-control mt-2' value={auther} onChange={(e) => setAuther(e.target.value)} />
-                        <input type='text' className='form-control mt-2' value={category} onChange={(e) => setCategory(e.target.value)} />
-                        <input type='number' className='form-control mt-2' value={isbn} onChange={(e) => setISBN(e.target.value)} />
-                        <select className='form-select shadow-none mt-2' value={status} onChange={(e) => setStatus(e.target.value)}>
-
+                    <div className=' book-update-form'>
+                        <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
+                        <input type='text' value={auther} onChange={(e) => setAuther(e.target.value)} />
+                        <input type='text' value={category} onChange={(e) => setCategory(e.target.value)} />
+                        <input type='number' value={isbn} onChange={(e) => setISBN(e.target.value)} />
+                        <select value={status} onChange={(e) => setStatus(e.target.value)}>
                             <option value='New'>New</option>
                             <option value='Old'>Old</option>
                         </select>

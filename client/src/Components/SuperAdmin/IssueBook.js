@@ -102,7 +102,7 @@ const IssueBook = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {requestedBooks?.map((book) =>
+                                {requestedBooks?.filter((book) => book.status === 'Pending').map((book) =>
                                     <tr key={book._id}>
                                         <td>{book?.user?.firstname + book?.user?.lastname}</td>
                                         <td>{book?.book?.title}</td>

@@ -1,7 +1,8 @@
 const User = require('../Modals/user');
-const mailer = require('../Services/mail')
+const SignUp = require('../Services/SignUp')
 const jwt = require('jsonwebtoken')
-const BorrowMail = require('../Services/BorrowMail')
+const Updates = require('../Services/Updates')
+
 const userCtrl = {
     getUser: async (req, res) => {
         try {
@@ -23,7 +24,7 @@ const userCtrl = {
             }
             const token = jwt.sign(req.body, process.env.SECRET)
             const url = `http://localhost:3000/verify/${token}`
-            mailer(email, url)
+            SignUp(email, url)
             return res.status(201).json({ message: "Please Check email to Verify Your account", token })
         } catch (error) {
             return res.status(500).json({ error: error.message })
@@ -52,7 +53,7 @@ const userCtrl = {
             const email = newUser?.email
             const name = newUser?.firstname
             const text = `Dear ${name} your request has been approved. Now you can login using your this email and default password is 'user'.`
-            BorrowMail(email, text)
+            Updates(email, text)
             return res.status(200).json({ message: 'User Approved successfully', user })
 
         } catch (error) {
@@ -128,7 +129,7 @@ const userCtrl = {
             const email = userMail?.email
             const name = userMail?.firstname
             const text = `Dear ${name} admin has delete your account. For further details visit the admin office.`
-            BorrowMail(email, text)
+            Updates(email, text)
             const deleteUser = await User.findByIdAndRemove(id).exec()
             if (!deleteUser) {
                 return res.status(400).json({ message: 'User did not deleted' })

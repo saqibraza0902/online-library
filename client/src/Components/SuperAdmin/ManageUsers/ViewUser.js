@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { users } from '../../../Redux/Actions/Actions'
 import { toast, ToastContainer } from 'react-toastify'
 import Sidebar from '../Sidebar'
+import { BsCheck2All, BsCheck2 } from 'react-icons/bs'
 
 const ViewUser = () => {
     const dispatch = useDispatch()
@@ -111,9 +112,9 @@ const ViewUser = () => {
                                                 }
 
                                                 {user.status === 1 ?
-                                                    <i type='button' onClick={() => toast('User Already Approved')} className='bi bi-pencil'></i>
+                                                    <i type='button' onClick={() => toast('User Already Approved')}><BsCheck2All /></i>
                                                     :
-                                                    <i type='button' onClick={() => update(user._id)} className='bi bi-pencil'></i>
+                                                    <i type='button' onClick={() => update(user._id)}><BsCheck2 /></i>
                                                 }
                                             </div>
                                         </td>
